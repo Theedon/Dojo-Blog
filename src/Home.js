@@ -1,36 +1,53 @@
+import { useState } from "react";
+
 const Home = () => {
-  const logToConsole = (variable, e) => {
-    console.log(e);
-    if (variable === "") {
-      console.log("nothing");
-      alert("nothing");
-    } else {
-      console.log(`i am sending ${variable} to the console`);
-      alert(`${variable}`);
-    }
+  const [name, setName] = useState("Mario");
+  const [age, setAge] = useState(10);
+  // console.log("value before change by hook", name);
+
+  const handleClick = (var1) => {
+    setName(var1);
+    setAge(20);
+    // console.log("value after change by hook", name);
   };
-  const showEvent = (e) => {
-    console.log(e);
+
+  const changeAlways = (name) => {
+    if (name == "Mario") {
+      setName("Luigi");
+      setAge(20);
+    } else {
+      setName("Mario");
+      setAge(10);
+    }
   };
   return (
     <div className="home">
       <h2>Homepage</h2>
-      {/* for the function above, i had to create an anonymous function before i invoked my function and its argument inside of it */}
+      <p>{name}</p>
       <button
         onClick={() => {
-          logToConsole("");
+          handleClick("Luigi");
         }}
       >
-        BUTTON ONE
+        BUTTON
       </button>
-      <button
-        onClick={(e) => {
-          logToConsole("tola", e);
-        }}
-      >
-        BUTTON TWO
-      </button>
-      <button onClick={showEvent}>BUTTON 3</button>
+      <button onClick={() => changeAlways(name)}>BUTTON2</button>
+      <hr />
+      <hr />
+      <hr />
+      <hr />
+      <div className="subHome1">
+        <p>
+          {name} is {age} years old
+        </p>
+        <button
+          onClick={() => {
+            changeAlways(name);
+          }}
+        >
+          RENDER BUTTON
+        </button>
+      </div>
     </div>
   );
 };
