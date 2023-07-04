@@ -18,13 +18,13 @@ const Home = () => {
     author: "toyin",
     id: 1,
   };
+  const [name, setName] = useState("Mario");
 
   const addBlog = () => {
     if (blogs.length >= 1) {
       newBlog.id = blogs[blogs.length - 1].id + 1;
       setBlogs([...blogs, newBlog]);
     } else {
-      console.log("yes");
       newBlog.id = 1;
       setBlogs([newBlog]);
     }
@@ -35,10 +35,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-    console.log(
-      "this code runs everytime the page rerenders i.e start of page and State changes"
-    );
-  });
+    console.log("useEffect hook ran");
+  }, [name]);
 
   return (
     <div>
@@ -49,13 +47,27 @@ const Home = () => {
         deleteBlog={deleteBlog}
         newBlog={newBlog}
       />
-      <BlogList
+      {/* <BlogList
         blogs={blogs.filter((blog) => blog.author == "mario")}
         title="Mario's Blogs"
         newBlog={newBlog}
         addBlog={addBlog}
         deleteBlog={deleteBlog}
-      />
+      /> */}
+      <div className="container">
+        <p>{name}</p>
+        <button
+          onClick={() => {
+            if (name === "Mario") {
+              setName("Luigi");
+            } else {
+              setName("Mario");
+            }
+          }}
+        >
+          EFFECT
+        </button>
+      </div>
     </div>
   );
 };
