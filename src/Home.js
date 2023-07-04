@@ -13,32 +13,42 @@ const Home = () => {
     },
   ]);
   let newBlog = {
-    title: "New Title",
-    body: "This is new content added",
+    title: "New Blog",
+    body: "This is the content of the new blog added",
     author: "toyin",
     id: 1,
   };
 
   const addBlog = () => {
-    newBlog.id = blogs[blogs.length - 1].id + 1;
-    setBlogs([...blogs, newBlog]);
-    // console.log(newBlog.id);
+    if (blogs.length >= 1) {
+      newBlog.id = blogs[blogs.length - 1].id + 1;
+      setBlogs([...blogs, newBlog]);
+    } else {
+      console.log("yes");
+      newBlog.id = 1;
+      setBlogs([newBlog]);
+    }
+  };
+  const deleteBlog = (id) => {
+    const filteredBlogs = blogs.filter((blog) => blog.id !== id);
+    setBlogs(filteredBlogs);
   };
 
-  // beginning of jsx for code in browser
   return (
     <div>
       <BlogList
         blogs={blogs}
         title="All Blogs"
-        newBlog={newBlog}
         addBlog={addBlog}
+        deleteBlog={deleteBlog}
+        newBlog={newBlog}
       />
       <BlogList
         blogs={blogs.filter((blog) => blog.author == "mario")}
         title="Mario's Blogs"
         newBlog={newBlog}
         addBlog={addBlog}
+        deleteBlog={deleteBlog}
       />
     </div>
   );
