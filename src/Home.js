@@ -1,52 +1,40 @@
 import { useState } from "react";
 
 const Home = () => {
-  const [name, setName] = useState("Mario");
-  const [age, setAge] = useState(10);
-  // console.log("value before change by hook", name);
-
-  const handleClick = (var1) => {
-    setName(var1);
-    setAge(20);
-    // console.log("value after change by hook", name);
+  let newBlog = {
+    title: "New Title",
+    body: "This is new content added",
+    author: "toyin",
+    id: 1,
   };
 
-  const changeAlways = (name) => {
-    if (name == "Mario") {
-      setName("Luigi");
-      setAge(20);
-    } else {
-      setName("Mario");
-      setAge(10);
-    }
+  const addBlog = () => {
+    newBlog.id = blogs[blogs.length - 1].id + 1;
+    setBlogs([...blogs, newBlog]);
+    // console.log(newBlog.id);
   };
+
+  const [blogs, setBlogs] = useState([
+    { title: "My new website", body: "lorem ipsum...", author: "mario", id: 1 },
+    { title: "Welcome party!", body: "lorem ipsum...", author: "yoshi", id: 2 },
+    {
+      title: "Web dev top tips",
+      body: "lorem ipsum...",
+      author: "mario",
+      id: 3,
+    },
+  ]);
   return (
     <div className="home">
-      <h2>Homepage</h2>
-      <p>{name}</p>
-      <button
-        onClick={() => {
-          handleClick("Luigi");
-        }}
-      >
-        BUTTON
-      </button>
-      <button onClick={() => changeAlways(name)}>BUTTON2</button>
-      <hr />
-      <hr />
-      <hr />
-      <hr />
-      <div className="subHome1">
-        <p>
-          {name} is {age} years old
-        </p>
-        <button
-          onClick={() => {
-            changeAlways(name);
-          }}
-        >
-          RENDER BUTTON
-        </button>
+      {blogs.map((blog) => (
+        <div className="blog-preview" key={blog.id}>
+          <h2>Title: {blog.title}</h2>
+          <p>Author: {blog.author}</p>
+          <br />
+        </div>
+      ))}
+      <div className="container">
+        <button onClick={() => addBlog(newBlog)}>BUTTON</button>
       </div>
     </div>
   );
