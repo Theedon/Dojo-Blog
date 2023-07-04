@@ -1,6 +1,6 @@
 import { React } from "react";
 
-const BlogList = ({ blogs, title, newBlog, addBlog, deleteBlog }) => {
+const BlogList = ({ blogs, title }) => {
   return (
     <div className="home">
       <h2>{title}</h2>
@@ -9,12 +9,8 @@ const BlogList = ({ blogs, title, newBlog, addBlog, deleteBlog }) => {
           <h2>Title: {blog.title}</h2>
           <p>Author: {blog.author}</p>
           <br />
-          <button onClick={() => deleteBlog(blog.id)}>DELETE</button>
         </div>
       ))}
-      <div className="container">
-        <button onClick={() => addBlog(newBlog)}>ADD NEW</button>
-      </div>
     </div>
   );
 };
