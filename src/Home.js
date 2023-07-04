@@ -34,6 +34,12 @@ const Home = () => {
         newBlog={newBlog}
         addBlog={addBlog}
       />
+      <BlogList
+        blogs={blogs.filter((blog) => blog.author == "mario")}
+        title="Mario's Blogs"
+        newBlog={newBlog}
+        addBlog={addBlog}
+      />
     </div>
   );
 };
