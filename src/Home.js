@@ -1,21 +1,27 @@
-import { useState, useEffect } from "react";
+import useFetch from "./useFetch";
 import BlogList from "./BlogList";
 
 const Home = () => {
-  const [blogs, setBlogs] = useState();
+  const urlEndpoint = "http://localhost:8000/blogs";
+  const { data: blogs, isLoading, error } = useFetch(urlEndpoint);
 
-  useEffect(() => {
-    fetch("http://localhost:8000/blogs")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        setBlogs(data);
-      });
-  }, []);
-
-  return <div>{blogs && <BlogList blogs={blogs} title="All Blogs" />}</div>;
+  return (
+    <div>
+      {error && (
+        <div className="blog-preview">
+          <p>{error}</p>
+        </div>
+      )}
+      {isLoading && (
+        <div className="blog-preview">
+          <p>page loading...</p>
+        </div>
+      )}
+      {blogs && <BlogList blogs={blogs} title="All Blogs" />}
+    </div>
+  );
 };
 
 export default Home;
+
+// run npx json-server --watch ./data/db.json --port 8000 to start the json server
