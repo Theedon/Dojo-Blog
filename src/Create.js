@@ -23,7 +23,7 @@ const Create = () => {
         setIsLoading(false);
         history.push("/");
       });
-    }, 5000);
+    }, 1000);
   };
 
   return (
