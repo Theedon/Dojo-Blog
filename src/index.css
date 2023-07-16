@@ -145,3 +145,17 @@ home button:hover {
   border-radius: 8px;
   cursor: pointer;
 }
+
+.not-found {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+.not-found h2 {
+  font-size: 20px;
+  color: #f1356d;
+  margin-bottom: 30px;
+}
+.not-found p {
+  margin-bottom: 10px;
+}
